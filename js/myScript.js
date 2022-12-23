@@ -25,6 +25,13 @@ function showLogin(){
  */
 function doLogin(){
 
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+
+    //consultamos con login.pl
+    // url a momento de conectar con perl
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/login.pl?usuario=$"+usuario+"&password=$"+password;
+
 
 
 
@@ -86,9 +93,6 @@ function showCreateAccount(){
     <button style = 'margin-top: 10px' onclick='doCreateAccount()'>Crear cuenta</button>`;
 
     mainTag.innerHTML = html;
-
-
-
 
 
 }
