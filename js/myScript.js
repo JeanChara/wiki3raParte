@@ -6,7 +6,6 @@
 function showLogin(){
 
     const mainTag = document.getElementById("main");
-    console.log(mainTag);
 
     var html = `
     <p>Usuario</p> 
@@ -73,13 +72,20 @@ function showLoggedIn(){
  * */
 function showCreateAccount(){
 
+    const mainTag = document.getElementById("main");
 
+    var html = `
+    <label>Nombres: </label> 
+    <input type='text' id='Nombre' name='Nombre' required><br>
+    <label>Apellidos: </label> 
+    <input type='password' id='Apellido' name='Apellido' required><br>
+    <p>Usuario</p> 
+    <input type='text' id='usuario' name='usuario' required><br>
+    <p>Contraseña</p> 
+    <input type='password' id='password' name='password' required><br>
+    <button style = 'margin-top: 10px' onclick='doCreateAccount()'>Crear cuenta</button>`;
 
-
-
-
-
-
+    mainTag.innerHTML = html;
 
 
 
