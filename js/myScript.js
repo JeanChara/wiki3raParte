@@ -5,13 +5,17 @@
  */
 function showLogin(){
 
+    const mainTag = document.getElementById("main");
+    console.log(mainTag);
 
+    var html = `
+    <p>Usuario</p> 
+    <input type='text' id='usuario' name='usuario' required><br>
+    <p>Contraseña</p> 
+    <input type='password' id='password' name='password' required><br>
+    <button style = 'margin-top: 10px' onclick='doLogin()'>Iniciar Sesion</button>`;
 
-
-
-
-
-
+    mainTag.innerHTML = html;
 
 }
 
