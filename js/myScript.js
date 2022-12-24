@@ -38,7 +38,7 @@ function doLogin(){
         loginResponse(xhr.responseXML);
     };
 
-    xhr.open("POST", urlQuery, true);
+    xhr.open("POST", url, true);
     xhr.send();
 
 
@@ -58,7 +58,7 @@ function loginResponse(xml){
     // <user><owner><firstName><lastName>
     const userTag = xml.children[0];
 
-    if (userTag.textContent == "") { // si el valor es vacio, vaciamos formulario
+    if (userTag.textContent == "\n") { // si el valor es vacio, vaciamos formulario
         document.getElementById("usuario").value = "";
         document.getElementById("password").value = "";
     }
@@ -84,9 +84,10 @@ function loginResponse(xml){
  */
 function showLoggedIn(){
 
-  showWelcome();
-  showMenuUserLogged();
-  document.getElementById("userName").textContent = userFullName;
+    document.getElementById("userName").textContent = userFullName;
+    showWelcome();
+    showMenuUserLogged();
+  
 
 
 }
