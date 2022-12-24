@@ -41,9 +41,6 @@ if(!(@row == 0)){
 }
 else {
     print "<user>\n";
-    print "<owner> </owner>\n";
-    print "<firstName> </firstName>\n";
-    print "<lastName> </lastName>\n";
     print "</user>\n";
 
 }
