@@ -28,9 +28,9 @@ if (!(@row == 0)){
 	$sth->finish;
 
 	print "<article>";
-    print "<owner> $owner </owner>";
-	print "<tittle> $titulo </tittle>";
-	print "<text> @row </text>";
+    print "<owner>$owner</owner>";
+	print "<tittle>$titulo</tittle>";
+	print "<text>@row</text>";
 	print "</article>";
 }
 else {

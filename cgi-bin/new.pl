@@ -47,8 +47,8 @@ if (!(@row == 0)){
 	$sth->finish;
 
 	print "<article>";
-	print "<tittle> $titulo </tittle>";
-	print "<text> $markdown </text>";
+	print "<tittle>$titulo</tittle>";
+	print "<text>$markdown</text>";
 	print "</article>";
 }
 else {

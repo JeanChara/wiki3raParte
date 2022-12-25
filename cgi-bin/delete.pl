@@ -32,8 +32,8 @@ if (!(@row == 0)){
 	$sth->finish;
 
 	print "<article>";
-	print "<owner> $owner </owner>";
-	print "<title> $titulo </title>";
+	print "<owner>$owner</owner>";
+	print "<title>$titulo</title>";
 	print "</article>";
 }
 else {
