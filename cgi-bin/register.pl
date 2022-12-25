@@ -31,9 +31,9 @@ if(@row == 0){
     $sth = $dbh->prepare("INSERT INTO Users(userName,password,lastName,firstName) VALUES(?,?,?,?)");
     $sth -> execute($nombreUsuario,$contra,$apellidos,$nombres);
     print "<user>\n";
-    print "<owner> $nombreUsuario </owner>\n";
-    print "<firstName> $nombres </firstName>\n";
-    print "<lastName> $apellidos </lastName>\n";
+    print "<owner>$nombreUsuario</owner>\n";
+    print "<firstName>$nombres</firstName>\n";
+    print "<lastName>$apellidos</lastName>\n";
     print "</user>\n";
 }
 else {

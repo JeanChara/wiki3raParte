@@ -34,9 +34,9 @@ if(!(@row == 0)){
     my @row3 = $sth->fetchrow_array;
 
     print "<user>\n";
-    print "<owner> $nombreUsuario </owner>\n";
-    print "<firstName> @row2[0] </firstName>\n";
-    print "<lastName> @row3[0] </lastName>\n";
+    print "<owner>$nombreUsuario</owner>\n";
+    print "<firstName>@row2[0]</firstName>\n";
+    print "<lastName>@row3[0]</lastName>\n";
     print "</user>\n";
 }
 else {

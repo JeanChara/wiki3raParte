@@ -166,8 +166,18 @@ function doCreateAccount(){
  * La respuesta del CGI debe ser procesada por showList
  */
 function doList(){
+    // userkey = owner = usuario
 
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/list.pl?usuario="+userKey;
+    console.log(url);
+    var xhr = new XMLHttpRequest();
+    
+    xhr.open("GET", url, true);
+    xhr.send();
 
+    xhr.onload = function () {
+      showList(xhr.responseXML);
+    };
 
 }
 
@@ -182,22 +192,28 @@ function doList(){
  */
 function showList(xml){
 
+    const articlesTag = xml.children[0];
 
+    if (articlesTag.children.length == 0) { // en caso este vacio.
+        document.getElementById("main").innerHTML = `<h1>No hay paginas creadas</h1>`;
+    } 
+    
+    else {
+        document.getElementById("main").innerHTML = "<h1>Listado de paginas</h1>";
 
+        for (let i = 0; i < articlesTag.children.length; i++) { // imprimimos las paginas existentes
+            //<articles><article><owner><title>
 
+            let title = articlesTag.children[i].children[1].textContent;
+            var pagina = "<span style ='margin-right: 10px;'>"+title+"</span>"
+            var doView = "<button onclick=doView("+userKey+","+title+")>Ver Pagina</button>";
+            var doDelete = "<button onclick=doDelete("+userKey+","+title+")>Borrar pagina</button>";
+            var doEdit = "<button onclick=doEdit("+userKey+","+title+")>Editar pagina</button>";
+            document.getElementById("main").innerHTML += pagina+doView+doDelete+doEdit;
 
+        }
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 }
 

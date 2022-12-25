@@ -26,8 +26,8 @@ print "<articles>\n";
 while(my @row = $sth->fetchrow_array){
 
     print "<article>\n";
-		print "<owner> $owner </owner>";
-		print "<title> @row </title>";
+		print "<owner>$owner</owner>";
+		print "<title>@row</title>";
     print "</article>\n";
 	
 }
