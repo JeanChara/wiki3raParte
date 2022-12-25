@@ -30,16 +30,17 @@ function doLogin(){
 
     //consultamos con login.pl
     // url a momento de conectar con perl
-    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/login.pl?usuario=$"+usuario+"&password=$"+password;
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/login.pl?usuario="+usuario+"&password="+password;
+    console.log(url);
 
     xhr = new XMLHttpRequest();
+
+    xhr.open("GET", url, true);
+    xhr.send();
 
     xhr.onload = function () { //llamamos a loginResponse
         loginResponse(xhr.responseXML);
     };
-
-    xhr.open("POST", url, true);
-    xhr.send();
 
 
 
@@ -56,14 +57,11 @@ function doLogin(){
 function loginResponse(xml){
 
     // <user><owner><firstName><lastName>
+
     const userTag = xml.children[0];
+    console.log(userTag);
 
-    if (userTag.textContent == "\n") { // si el valor es vacio, vaciamos formulario
-        document.getElementById("usuario").value = "";
-        document.getElementById("password").value = "";
-    }
-
-    else {
+    if (!(userTag.textContent == "\n")) { 
         let owner = userTag.children[0].textContent;
         let firstName = userTag.children[1].textContent;
         let lastName = userTag.children[2].textContent;
@@ -72,6 +70,12 @@ function loginResponse(xml){
         userKey = owner;
 
         showLoggedIn();
+       
+    }
+
+    else {// si el valor es vacio, vaciamos formulario
+        document.getElementById("usuario").value = "";
+        document.getElementById("password").value = "";
     }
 
 
