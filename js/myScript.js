@@ -225,15 +225,13 @@ function showList(xml){
  */
 function showNew(){
 
-
-
-
-
-
-
-
-
-
+    let showNew = `<p>Titulo</p>
+    <input id='titulo' name ='titulo' type='text'><br>
+    <textarea style = "width: 100%;" type="text" name="cuerpo"></textarea><br>
+    <button onclick='doNew()'>Enviar</button>
+    <button onclick='doList()'>Cancelar</button>`;
+  
+    document.getElementById("main").innerHTML = showNew;
 
 }
 
