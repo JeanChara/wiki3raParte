@@ -129,8 +129,9 @@ function showCreateAccount(){
  */
 function doCreateAccount(){
     
-    const Nombre = document.getElementById("Nombre").value
-    const Apellido = document.getElementById("Apellido").value
+    // nombre y apellido pueden escribir letras separadas y no habra problema
+    const Nombre = encodeURIComponent(document.getElementById("Nombre").value).replace(/%20/g,"+");
+    const Apellido = encodeURIComponent(document.getElementById("Apellido").value).replace(/%20/g,"+");
     const usuario = document.getElementById("usuario").value;
     const password = document.getElementById("password").value;
 
