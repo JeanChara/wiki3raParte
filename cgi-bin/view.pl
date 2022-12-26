@@ -31,8 +31,13 @@ for (my $i=0; $i<scalar(@lineas); $i++){ #para cada linea...
 	my $lineaExpresada = matchLine($lineas[$i]);
 	$textoHTML= $textoHTML."$lineaExpresada";
 }
-print "Content-type: text/html\n\n";
+# añadiendo root para recibirlo en js
+
+print $q->header('text/XML');
+print "<?xml version='1.0' encoding='utf-8'?>\n";
+print "<root>";
 print $textoHTML;
+print "</root>"
 
 sub matchLine{
   my $linea = $_[0];
@@ -87,4 +92,5 @@ sub matchLine{
     }
 
   }
+
 }

@@ -286,9 +286,16 @@ function responseNew(response){
  * atendida por responseView
  */
 function doView(owner, title){
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/view.pl?usuario="+owner+"&titulo="+title;
 
+    let xhr = new XMLHttpRequest();
 
+    xhr.open("GET", url, true);
+    xhr.send();
 
+    xhr.onload = function () {
+         responseView(xhr.responseXML);
+    };
 
 }
 
@@ -298,6 +305,10 @@ function doView(owner, title){
  */
 function responseView(response){
 
+    let pag = response.children[0];
+    console.log(pag);
+  
+    document.getElementById("main").innerHTML = pag.innerHTML;
 }
 
 /*
