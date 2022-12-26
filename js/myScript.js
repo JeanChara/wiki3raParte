@@ -294,7 +294,7 @@ function doView(owner, title){
     xhr.send();
 
     xhr.onload = function () {
-         responseView(xhr.responseXML);
+        responseView(xhr.responseXML);
     };
 
 }
@@ -335,8 +335,16 @@ function doDelete(owner, title){
  */
 function doEdit(owner, title){
 
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/article.pl?usuario="+owner+"&titulo="+title;
+    console.log(url);
+    let xhr = new XMLHttpRequest();
+  
+    xhr.open("GET", url, true);
+    xhr.send();
 
-
+    xhr.onload = function () {
+        responseEdit(xhr.responseXML);
+    };
 
 }
 
@@ -348,16 +356,17 @@ function doEdit(owner, title){
  */
 function responseEdit(xml){
 
+  let titulo = xml.children[0].children[1].textContent; // titulo
+  let cuerpo = xml.children[0].children[2].textContent; // cuerpo-markdown
+  console.log(titulo);
+  console.log(xml.children[0]);
+  let showUpdate = `<h2>${titulo}</h2>
+  <p>Contenido-markdown</p>
+  <textarea style = "width: 100%;" type="text" id ="cuerpo" name="cuerpo">${cuerpo}</textarea><br>
+  <button onclick='doUpdate("${titulo}")'>Actualizar Pagina</button>
+  <button onclick='doList()'>Cancelar</button>`;
 
-
-
-
-
-
-
-
-
-
+  document.getElementById("main").innerHTML = showUpdate;
 
 }
 /*
@@ -367,11 +376,21 @@ function responseEdit(xml){
  */
 function doUpdate(title){
 
+    console.log(title);
+    title = encodeURIComponent(title).replace(/%20/g, "+"); // para reemplazar espacios en el url
+    let cuerpo = encodeURIComponent(document.getElementById("cuerpo").value).replace(/%20/g,"+");
+    console.log(title);
+    let url = `http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/update.pl?usuario=${userKey}&titulo=${title}&cuerpo=${cuerpo}`;
 
+    console.log(url);
+    let xhr = new XMLHttpRequest();
 
+    xhr.open("GET", url, true);
+    xhr.send();
 
-
-
+    xhr.onload = function () {
+        responseNew(xhr.responseXML); // para verificar si actualizo o no
+    };
 
 
 }
