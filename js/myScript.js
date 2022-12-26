@@ -205,11 +205,12 @@ function showList(xml){
             //<articles><article><owner><title>
 
             let title = articlesTag.children[i].children[1].textContent;
-            var pagina = "<span style ='margin-right: 10px;'>"+title+"</span>"
-            var doView = "<button onclick=doView("+userKey+","+title+")>Ver Pagina</button>";
-            var doDelete = "<button onclick=doDelete("+userKey+","+title+")>Borrar pagina</button>";
-            var doEdit = "<button onclick=doEdit("+userKey+","+title+")>Editar pagina</button>";
-            document.getElementById("main").innerHTML += pagina+doView+doDelete+doEdit;
+            var pagina = `<span>${title}</span>
+            <button onclick="doView('${userKey}','${title}')">Ver Pagina</button>
+            <button onclick="doDelete('${userKey}','${title}')">Eliminar Pagina</button>
+            <button onclick="doEdit('${userKey}','${title}')">Editar Pagina</button><br>`;
+            document.getElementById("main").innerHTML += pagina;
+            console.log(document.getElementById("main").innerHTML);
 
         }
 
@@ -277,6 +278,7 @@ function responseNew(response){
     else {
         document.getElementById("main").innerHTML = "<h2>"+article.children[0].textContent+"</h2><p>"+article.children[1].textContent+"</p>";
     }
+
 }
 
 /*
@@ -304,8 +306,15 @@ function responseView(response){
  */
 function doDelete(owner, title){
 
+    let url = "http://192.168.1.6/~alumno/proyectoFinal/cgi-bin/delete.pl?usuario="+owner+"&titulo="+title;
+    let xhr = new XMLHttpRequest();
 
+    xhr.open("GET", url, true);
+    xhr.send();
 
+    xhr.onload = function () {
+        doList();
+    };
 
 }
 
